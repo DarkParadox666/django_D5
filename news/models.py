@@ -74,7 +74,7 @@ class Post(models.Model):
         self.save()
 
     def preview(self):
-        return f'{self.content[0:124]}...'
+        return f'{self.content[0:123]}...'
 
     def __str__(self):
         return f"Время публикации: {self.time_in.strftime('%d.%m.%Y %H:%M')}" \

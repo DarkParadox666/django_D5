@@ -10,6 +10,6 @@ urlpatterns = [
    # Т.к. наше объявленное представление является классом,
    # а Django ожидает функцию, нам надо представить этот класс в виде view.
    # Для этого вызываем метод as_view.
-   path('', PostsList.as_view()),
-   path('<int:pk>', PostDetails.as_view())
+   path('', PostsList.as_view(), name='posts_list'),
+   path('<int:pk>', PostDetails.as_view(), name='post'),
 ]

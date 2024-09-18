@@ -12,5 +12,9 @@ post
 <h2 style="text-align: left;">Дата публикации: {{ post.time_in|date:'d-m-Y'}}</h2>
 <h2 style="text-align: left;">Содержание: </h2>
 <h2 style="text-align: left;">{{ post.content|censure }}</h2>
-
+{% if post.is_post == 'New' %}
+    <h2><a href="news/{{post.pk}}/edit/">Edit news</a></h2>
+{% else %}
+   <h2><a href="article/{{post.pk}}/edit/">Edit article</a></h2>
+{% endif %}
 {% endblock content %}

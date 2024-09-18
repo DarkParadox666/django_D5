@@ -1,12 +1,17 @@
 {% extends 'flatpages/default.html' %}
 {% load custom_filters %}
 {% load custom_tags %}
+
 {% block title %}
 Posts
 {% endblock title %}
 
 {% block content %}
 <h1>Все новости</h1>
+   <form action="" method="get">
+       {{ filterset.form.as_p }}
+       <input type="submit" value="Найти" />
+   </form>
 <h3>Количество: {{posts|length}}</h3>
 <center><table>
     <tr>
@@ -39,4 +44,7 @@ Posts
     <a href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>
     {% endif %}
 {% endif %}
+<hr>
+<h2><a href="news/create/">Create news</a> </h2>
+<h2><a href="article/create/">Create article</a> </h2>
 {% endblock content %}

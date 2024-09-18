@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 class Author(models.Model):
@@ -80,6 +81,10 @@ class Post(models.Model):
         return f"Время публикации: {self.time_in.strftime('%d.%m.%Y %H:%M')}" \
                f", Заголовок: {self.header}" \
                f", Содержание: {self.content}"
+
+    def get_absolute_url(self):
+        #return reverse('post', args=[str(self.pk)])
+        return reverse('posts_list')
 
     class Meta:
         ordering = ["-time_in"]

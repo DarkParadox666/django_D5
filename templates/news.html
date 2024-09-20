@@ -20,7 +20,7 @@ Posts
         <td><h2>Содержание</h2></td>
         {% for post in posts %}
         <tr>
-            <td><a href="{{ post.pk }}">{{post.header}}</a></td>
+            <td><a href="{% url 'post' pk=post.pk %}">{{post.header}}</a></td>
             <td>{{post.time_in|date:'d-m-Y'}}</td>
             <td>{{post.content|truncatechars:20}}</td>
         </tr>
@@ -45,6 +45,7 @@ Posts
     {% endif %}
 {% endif %}
 <hr>
-<h2><a href="news/create/">Create news</a> </h2>
-<h2><a href="article/create/">Create article</a> </h2>
+{% if perms.news.add_news or perms.news.add_article %}
+    <h2><a href="{% url 'news_create' %}">Create news</a> - <a href="{% url 'article_create' %}">Create article</a></h2>
+{% endif %}
 {% endblock content %}

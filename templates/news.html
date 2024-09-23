@@ -7,6 +7,12 @@ Posts
 {% endblock title %}
 
 {% block content %}
+{% if user.is_authenticated  %}
+    <h2>{{ user.username }} | <a href="{% url 'account_logout' %}">Logout</a></h2>
+{% else %}
+    <h2><a href="{% url 'account_login' %}">Login</a></h2>
+    <h2><a href="{% url 'account_signup' %}">Register</a> </h2>
+{% endif %}
 <h1>Все новости</h1>
    <form action="" method="get">
        {{ filterset.form.as_p }}

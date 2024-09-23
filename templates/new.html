@@ -12,9 +12,9 @@ post
 <h2 style="text-align: left;">{{ post.content|censure }}</h2>
 {% if perms.news.change_news or perms.news.change_article %}
     {% if post.is_post == 'New' %}
-        <h2><a href="{% url 'news_edit' pk=post.pk %}">Edit news</a></h2>
+        <h2><a href="{% url 'news_edit' post.pk %}">Edit news</a></h2>
     {% else %}
-        <h2><a href="{% url 'article_edit' pk=post.pk %}">Edit article</a></h2>
+        <h2><a href="{% url 'article_edit' post.pk %}">Edit article</a></h2>
     {% endif %}
 {% endif %}
 {% endblock content %}

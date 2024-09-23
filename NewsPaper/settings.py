@@ -1,6 +1,8 @@
 import os.path
 from pathlib import Path
 
+import django.core.mail.backends.smtp
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-f#03z=8d+iq+%ty+z5e8y1+^rnf%_oa1o14x-0=_9=oyr^lg(@'
@@ -53,7 +55,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.request',
             ],
         },
     },
@@ -98,6 +99,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
 LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
@@ -108,6 +111,28 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = "zagain22@yandex.ru"
+EMAIL_HOST_PASSWORD = "gawvrzoveplbzgqg"
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
+DEFAULT_FROM_EMAIL = "zagain22@yandex.ru"
 
 ACCOUNT_FORMS = {'signup': 'accounts.forms.CustomSignupForm'}
+
+SERVER_EMAIL = "zagain22@yandex.ru"
+MANAGERS = [
+    ('Pavel', 'zagain22@yandex.ru')
+]
+EMAIL_SUBJECT_PREFIX = 'NewsPaper'
+ADMINS = [
+    ('Pavel', 'zagain09@gmail.com')
+]

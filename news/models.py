@@ -80,11 +80,11 @@ class Post(models.Model):
     def __str__(self):
         return f"Время публикации: {self.time_in.strftime('%d.%m.%Y %H:%M')}" \
                f", Заголовок: {self.header}" \
-               f", Содержание: {self.content}"
+               f", Содержание: {self.content}" \
+               f", Категория {self.category}"
 
     def get_absolute_url(self):
-        #return reverse('post', args=[str(self.pk)])
-        return reverse('posts_list')
+        return reverse('post', args=[str(self.pk)])
 
     class Meta:
         ordering = ["-time_in"]
@@ -95,6 +95,9 @@ class Post(models.Model):
 class PostCategory(models.Model):
     posts = models.ForeignKey(Post, on_delete=models.CASCADE)
     categories = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.categories)
 
 
 class Comment(models.Model):
@@ -129,5 +132,5 @@ class Comment(models.Model):
 
 class Subscription(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='subscriptions')
-    category = models.ForeignKey(to=Category, on_delete=models.CASCADE, related_name='sub_category')
+    category = models.ForeignKey(to=Category, on_delete=models.CASCADE, related_name='subscriptions')
 

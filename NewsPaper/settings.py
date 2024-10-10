@@ -1,8 +1,6 @@
 import os.path
 from pathlib import Path
 
-import django.core.mail.backends.smtp
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-f#03z=8d+iq+%ty+z5e8y1+^rnf%_oa1o14x-0=_9=oyr^lg(@'
@@ -26,6 +24,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.yandex',
+    'django_apscheduler',
 ]
 
 SITE_ID = 1
@@ -115,8 +114,10 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# Убрали рассылку пока что в консоль
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# Сделали рассылку в консоль
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = "zagain22@yandex.ru"

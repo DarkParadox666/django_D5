@@ -6,6 +6,13 @@ post
 {% endblock title %}
 
 {% block content %}
+<h2 style="text-align: left;">Категория: {% for p in post.category.all %}
+    {% if not forloop.last %}
+        {{ p.category }},
+    {% else %}
+        {{ p.category }}
+    {% endif %}
+    {%endfor%}</h2>
 <h2 style="text-align: left;">Заголовок: {{ post.header }}</h2>
 <h2 style="text-align: left;">Дата публикации: {{ post.time_in|date:'d-m-Y'}}</h2>
 <h2 style="text-align: left;">Содержание: </h2>
